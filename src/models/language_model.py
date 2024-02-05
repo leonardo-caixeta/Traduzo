@@ -1,10 +1,9 @@
 from models.abstract_model import AbstractModel
 from database.db import db
-from os import environ
 
 
 class LanguageModel(AbstractModel):
-    _collection = db[environ.get("DB_NAME")]
+    _collection = db["languages"]
 
     def __init__(self, data: dict):
         super().__init__(data)
@@ -13,4 +12,9 @@ class LanguageModel(AbstractModel):
         return {
             "name": self.data.get("name"),
             "acronym": self.data.get("acronym"),
-            }
+        }
+
+    @classmethod
+    def list_dicts(self) -> list:
+        all_languages = self.find()
+        return [lan.to_dict() for lan in all_languages]
