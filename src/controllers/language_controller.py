@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request
 from deep_translator import GoogleTranslator
-from src.models.history_model import HistoryModel
 
+from src.models.history_model import HistoryModel
 from src.models.language_model import LanguageModel
 
 language_controller = Blueprint("language_controller", __name__)
